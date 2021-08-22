@@ -1,18 +1,13 @@
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-} from "@material-ui/core";
+import { Grid, Hidden, Box, Typography } from "@material-ui/core";
+import FormHeading from "./components/Sidebar/FormHeading";
+import SideBanner from "./components/Sidebar/SideBanner";
 import { login } from "./store/utils/thunkCreators";
+import Form from "./components/Form";
 
 const Login = (props) => {
-  const history = useHistory();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -28,40 +23,25 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
-        </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+    <Grid container justifyContent="center">
+      <Grid item xs={false} sm={5}>
+        <Hidden xsDown>
+          <SideBanner />
+        </Hidden>
+      </Grid>
+      <Grid item xs={12} sm={7}>
+        <FormHeading
+          headingText="Don't have an account?"
+          headingBtnText="Create Account"
+          link="/register"
+        />
+        <Form
+          submitHandler={handleLogin}
+          title="Welcome Back!"
+          submitBtnText="Login"
+          isSignupForm={false}
+        />
+      </Grid>
     </Grid>
   );
 };
