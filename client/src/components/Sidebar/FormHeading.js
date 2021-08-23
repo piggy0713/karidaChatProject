@@ -3,9 +3,9 @@ import { Grid, Box, Typography, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   heading: {
-    padding: "2rem",
+    padding: theme.spacing(4),
   },
 }));
 

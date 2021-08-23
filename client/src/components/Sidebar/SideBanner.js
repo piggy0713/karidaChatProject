@@ -11,12 +11,7 @@ const useStyles = makeStyles(() => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    height: "100vh",
-    textAlign: "center",
-    paddingTop: "25vh",
     boxSizing: "border-box",
-    paddingLeft: "5vw",
-    paddingRight: "5vw",
   },
   bubbleIcon: {
     fontSize: "6rem",
@@ -27,7 +22,14 @@ const SideBanner = () => {
   const classes = useStyles();
 
   return (
-    <Box lineHeight={6} className={classes.root}>
+    <Box
+      lineHeight={6}
+      pt="25vh"
+      px="5vw"
+      height="100vh"
+      textAlign="center"
+      className={classes.root}
+    >
       <SvgIcon className={classes.bubbleIcon} viewBox="0 0 67 67">
         <BubbleSvg />
       </SvgIcon>
