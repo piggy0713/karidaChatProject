@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ErrorOutlineOutlinedIcon from "@material-ui/icons/ErrorOutlineOutlined";
 import { Grid, Box } from "@material-ui/core";
+import axios from "axios";
 
 const useStyles = makeStyles(() => ({
   hidden: {
@@ -29,16 +30,12 @@ const ImageUpload = ({ fileInputReference, images, setImages }) => {
     data.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
     data.append("file", file);
 
-    const response = await fetch(
+    const result = await axios.post(
       `https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/upload`,
-      {
-        method: "POST",
-        body: data,
-      }
+      data
     );
 
-    const result = await response.json();
-    return result.url;
+    return result.data.url;
   };
 
   const fileSelected = async (e) => {
