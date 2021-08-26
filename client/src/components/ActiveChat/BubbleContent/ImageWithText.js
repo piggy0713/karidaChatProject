@@ -14,7 +14,7 @@ const ImageWithText = ({ text, time, attachments }) => {
             src={image}
             width="100%"
             height="120px"
-            alt=""
+            alt={image}
             className={classes.imageWithText}
           />
         ))}

@@ -15,36 +15,40 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_NAME = process.env.REACT_APP_CLOUDINARY_NAME;
+
 const ImageUpload = ({ fileInputReference, images, setImages }) => {
   const classes = useStyles();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const CLOUDINARY_UPLOAD_PRESET = "creuhxon";
-  const CLOUDINARY_NAME = "dm7yigtxo";
-
-  const fileSelected = async (e) => {
-    setLoading(true);
-    setError(false);
-
-    const file = e.target.files[0];
-
+  const uploadImage = async (file) => {
     const data = new FormData();
     data.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
     data.append("file", file);
 
-    try {
-      const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/upload`,
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/upload`,
+      {
+        method: "POST",
+        body: data,
+      }
+    );
 
-      const result = await response.json();
-      setImages([...images, result.url]);
+    const result = await response.json();
+    return result.url;
+  };
+
+  const fileSelected = async (e) => {
+    setLoading(true);
+    setError(false);
+    const files = Array.from(e.target.files);
+
+    try {
+      const urls = await Promise.all(files.map((file) => uploadImage(file)));
+      setImages([...images, ...urls]);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -77,6 +81,7 @@ const ImageUpload = ({ fileInputReference, images, setImages }) => {
         ref={fileInputReference}
         className={classes.hidden}
         onChange={fileSelected}
+        multiple
       />
     </>
   );

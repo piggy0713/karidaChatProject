@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import bubbleStyles from "./styles";
 
 const ImageOnly = ({ time, attachments }) => {
@@ -13,7 +13,7 @@ const ImageOnly = ({ time, attachments }) => {
           key={image}
           src={image}
           height="150px"
-          alt=""
+          alt={image}
           className={classes.image}
         />
       ))}

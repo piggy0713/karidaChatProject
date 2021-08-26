@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import TextOnly from "./BubbleContent/TextOnly";
 import MultipleImage from "./BubbleContent/MultipleImage";
 import ImageWithText from "./BubbleContent/ImageWithText";
@@ -19,7 +19,7 @@ const SenderBubble = (props) => {
   const { time, text, attachments } = props;
   return (
     <Box className={classes.root}>
-      {attachments === null ? (
+      {!attachments ? (
         <TextOnly time={time} text={text} />
       ) : attachments.length > 1 ? (
         <MultipleImage time={time} text={text} attachments={attachments} />

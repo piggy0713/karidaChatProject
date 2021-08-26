@@ -17,7 +17,7 @@ const MultipleImage = ({ text, time, attachments }) => {
               src={image}
               height="90px"
               width="100%"
-              alt=""
+              alt={image}
               className={classes.image}
             />
           ))}
