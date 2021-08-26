@@ -11,7 +11,7 @@ const bubbleStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: "#91A3C0",
     letterSpacing: -0.2,
-    padding: 8,
+    padding: theme.spacing(1),
     fontWeight: "bold",
   },
   bubble: {
@@ -19,7 +19,7 @@ const bubbleStyles = makeStyles((theme) => ({
     borderRadius: "10px 10px 0 10px",
   },
   image: {
-    padding: theme.spacing(0.5),
+    padding: theme.spacing(1),
     borderRadius: "10px 10px 0 10px",
   },
   imageWithText: {
