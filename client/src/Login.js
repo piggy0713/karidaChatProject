@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Grid, Hidden, Box, Typography } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
 import FormHeading from "./components/Sidebar/FormHeading";
 import SideBanner from "./components/Sidebar/SideBanner";
 import { login } from "./store/utils/thunkCreators";
